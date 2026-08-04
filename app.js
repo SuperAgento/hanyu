@@ -6,6 +6,16 @@ const topicMap = {
   "Bài 3": ["明天见", "Ngôn ngữ", "Đi bưu điện", "Ngân hàng", "j q x"],
   "Bài 4": ["你去哪儿", "Hôm nay", "Thứ trong tuần", "学校", "A 不 A"],
   "Bài 5": ["这是王老师", "Lời mời", "请进 请坐", "工作", "身体"],
+  "Bài 6": ["我学习汉语", "请问", "姓名", "国家", "书/杂志"],
+  "Bài 7": ["你吃什么", "Bữa ăn", "食堂", "馒头", "要/个"],
+  "Bài 8": ["苹果多少钱", "Mua bán", "水果", "块/毛", "找钱"],
+  "Bài 9": ["我要换钱", "图书馆", "换钱", "人民币", "数字 lớn"],
+  "Bài 10": ["他住哪儿", "办公室", "找人", "住址", "电话号码"],
+  "Bài 11": ["留学生", "介绍", "教授/校长", "也/都", "哪国人"],
+  "Bài 12": ["在哪儿学习", "语言大学", "觉得", "比较", "语法"],
+  "Bài 13": ["是不是中药", "没有/有", "颜色", "箱子", "东西"],
+  "Bài 14": ["新还是旧", "最近", "刚", "骑车", "咖啡/酒"],
+  "Bài 15": ["多少职员", "照片", "全家", "公司", "外贸"],
 };
 
 const lessonNameMap = {
@@ -14,6 +24,16 @@ const lessonNameMap = {
   "Bài 3": "明天见",
   "Bài 4": "你去哪儿",
   "Bài 5": "这是王老师",
+  "Bài 6": "我学习汉语",
+  "Bài 7": "你吃什么",
+  "Bài 8": "苹果一斤多少钱",
+  "Bài 9": "我要换钱",
+  "Bài 10": "他住哪儿",
+  "Bài 11": "我们都是留学生",
+  "Bài 12": "你在哪儿学习",
+  "Bài 13": "这是不是中药",
+  "Bài 14": "你的车是新的还是旧的",
+  "Bài 15": "你们公司有多少职员",
 };
 
 const audioLessons = [
@@ -22,19 +42,20 @@ const audioLessons = [
   { id: "audio-03", number: 3, title: "Bài 3", theme: "明天见 · Ngày mai gặp", src: "audio/lesson-03.mp3", lesson: "Bài 3" },
   { id: "audio-04", number: 4, title: "Bài 4", theme: "你去哪儿 · Bạn đi đâu?", src: "audio/lesson-04.mp3", lesson: "Bài 4" },
   { id: "audio-05", number: 5, title: "Bài 5", theme: "这是王老师 · Đây là thầy giáo Vương", src: "audio/lesson-05.mp3", lesson: "Bài 5" },
-  { id: "audio-06", number: 6, title: "Bài 6", theme: "Quyển 1", src: "audio/lesson-06.mp3", lesson: "Bài 6" },
-  { id: "audio-07", number: 7, title: "Bài 7", theme: "Quyển 1", src: "audio/lesson-07.mp3", lesson: "Bài 7" },
-  { id: "audio-08", number: 8, title: "Bài 8", theme: "Quyển 1", src: "audio/lesson-08.mp3", lesson: "Bài 8" },
-  { id: "audio-09", number: 9, title: "Bài 9", theme: "Quyển 1", src: "audio/lesson-09.mp3", lesson: "Bài 9" },
-  { id: "audio-10", number: 10, title: "Bài 10", theme: "Quyển 1", src: "audio/lesson-10.mp3", lesson: "Bài 10" },
-  { id: "audio-11", number: 11, title: "Bài 11", theme: "Quyển 1", src: "audio/lesson-11.mp3", lesson: "Bài 11" },
-  { id: "audio-12", number: 12, title: "Bài 12", theme: "Quyển 1", src: "audio/lesson-12.mp3", lesson: "Bài 12" },
-  { id: "audio-13", number: 13, title: "Bài 13", theme: "Quyển 1", src: "audio/lesson-13.mp3", lesson: "Bài 13" },
-  { id: "audio-14", number: 14, title: "Bài 14", theme: "Quyển 1", src: "audio/lesson-14.mp3", lesson: "Bài 14" },
-  { id: "audio-15", number: 15, title: "Bài 15", theme: "Quyển 1", src: "audio/lesson-15.mp3", lesson: "Bài 15" },
+  { id: "audio-06", number: 6, title: "Bài 6", theme: "我学习汉语 · Tôi học tiếng Hán", src: "audio/lesson-06.mp3", lesson: "Bài 6" },
+  { id: "audio-07", number: 7, title: "Bài 7", theme: "你吃什么 · Bạn ăn gì?", src: "audio/lesson-07.mp3", lesson: "Bài 7" },
+  { id: "audio-08", number: 8, title: "Bài 8", theme: "苹果一斤多少钱 · Táo một cân bao nhiêu tiền?", src: "audio/lesson-08.mp3", lesson: "Bài 8" },
+  { id: "audio-09", number: 9, title: "Bài 9", theme: "我要换钱 · Tôi muốn đổi tiền", src: "audio/lesson-09.mp3", lesson: "Bài 9" },
+  { id: "audio-10", number: 10, title: "Bài 10", theme: "他住哪儿 · Anh ấy sống ở đâu?", src: "audio/lesson-10.mp3", lesson: "Bài 10" },
+  { id: "audio-11", number: 11, title: "Bài 11", theme: "我们都是留学生 · Chúng tôi đều là lưu học sinh", src: "audio/lesson-11.mp3", lesson: "Bài 11" },
+  { id: "audio-12", number: 12, title: "Bài 12", theme: "你在哪儿学习 · Bạn học ở đâu?", src: "audio/lesson-12.mp3", lesson: "Bài 12" },
+  { id: "audio-13", number: 13, title: "Bài 13", theme: "这是不是中药 · Đây có phải thuốc Đông y không?", src: "audio/lesson-13.mp3", lesson: "Bài 13" },
+  { id: "audio-14", number: 14, title: "Bài 14", theme: "你的车是新的还是旧的 · Xe của bạn mới hay cũ?", src: "audio/lesson-14.mp3", lesson: "Bài 14" },
+  { id: "audio-15", number: 15, title: "Bài 15", theme: "你们公司有多少职员 · Công ty có bao nhiêu nhân viên?", src: "audio/lesson-15.mp3", lesson: "Bài 15" },
 ];
 
 const audioTranscripts = window.AUDIO_TRANSCRIPTS || {};
+const generatedVocabulary = window.LESSON_VOCAB || [];
 
 const seedVocabulary = [
   { id: "l1-wo", lesson: "Bài 1", hanzi: "我", pinyin: "wǒ", hanViet: "ngã", meaning: "tôi", note: "Bản ngã, cái tôi." },
@@ -257,7 +278,7 @@ function normalize(value) {
 }
 
 function allVocab() {
-  return [...seedVocabulary, ...customVocab];
+  return [...seedVocabulary, ...generatedVocabulary, ...customVocab];
 }
 
 function allRadicals() {
