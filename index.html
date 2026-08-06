@@ -3,18 +3,64 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sổ ôn tiếng Trung</title>
-    <link rel="stylesheet" href="styles.css?v=lesson-15" />
+    <title>Sổ học ngoại ngữ</title>
+    <link rel="stylesheet" href="styles.css?v=multilingual-7-dictionary" />
   </head>
   <body>
+    <section class="language-gate" id="languageGate" aria-labelledby="languageGateTitle">
+      <div class="gate-shell">
+        <div class="gate-heading">
+          <span class="gate-mark" aria-hidden="true">語</span>
+          <p class="eyebrow">Sổ học ngoại ngữ</p>
+          <h1 id="languageGateTitle">Hôm nay bạn muốn học tiếng gì?</h1>
+          <p>Chọn một ngôn ngữ để vào đúng không gian bài học của bạn.</p>
+        </div>
+
+        <div class="language-grid" aria-label="Chọn ngôn ngữ">
+          <button class="language-card chinese" type="button" data-enter-language="zh">
+            <span class="language-code" aria-hidden="true">中</span>
+            <span class="language-copy">
+              <strong>Tiếng Trung</strong>
+              <small>15 bài · từ vựng · nghe · flashcard</small>
+            </span>
+            <span class="language-status ready">Vào học</span>
+          </button>
+
+          <button class="language-card korean" type="button" data-enter-language="ko">
+            <span class="language-code" aria-hidden="true">한</span>
+            <span class="language-copy">
+              <strong>Tiếng Hàn</strong>
+              <small>Bài 1 · bảng chữ cái Hangeul</small>
+            </span>
+            <span class="language-status new">Bài mới</span>
+          </button>
+
+          <button class="language-card english" type="button" data-enter-language="en">
+            <span class="language-code" aria-hidden="true">EN</span>
+            <span class="language-copy">
+              <strong>Tiếng Anh</strong>
+              <small>7 tài liệu · Reading · Writing</small>
+            </span>
+            <span class="language-status ready">Vào học</span>
+          </button>
+        </div>
+
+        <p class="gate-footnote">Tiến độ của từng ngôn ngữ được lưu riêng trên thiết bị này.</p>
+      </div>
+    </section>
+
+    <div class="language-app" id="chineseApp" data-language="zh" hidden>
     <header class="app-header">
       <div class="brand">
         <img src="assets/logo.png" alt="Logo lớp tiếng Trung" class="brand-logo" />
         <div>
           <h1>Sổ ôn tiếng Trung</h1>
-          <p>5 buổi gần đây · từ vựng · tân thủ · flashcard</p>
+          <p>Bài 1–15 · từ vựng · nghe · flashcard</p>
         </div>
       </div>
+      <button class="language-switch" type="button" data-switch-language>
+        <i data-lucide="languages"></i><span>Đổi ngôn ngữ</span>
+      </button>
       <div class="header-stats" aria-label="Tổng quan nhanh">
         <div><strong id="statLessons">5</strong><span>bài</span></div>
         <div><strong id="statSlides">0</strong><span>slide</span></div>
@@ -46,6 +92,9 @@
         <button class="tab" data-tab="add">
           <i data-lucide="plus"></i><span>Thêm mới</span>
         </button>
+        <button class="tab dictionary-tab" data-tab="dictionary">
+          <i data-lucide="library-big"></i><span>Từ điển+</span>
+        </button>
       </nav>
 
       <section id="overview" class="view active">
@@ -53,7 +102,7 @@
           <div>
             <p class="eyebrow">Bộ học hiện tại</p>
             <h2>Nhập môn, gia đình, ngôn ngữ, địa điểm và chào hỏi lịch sự</h2>
-            <p class="band-copy">Dữ liệu được lấy từ Bài 1 đến Bài 5 của bạn.</p>
+            <p class="band-copy">Dữ liệu được tổng hợp từ Bài 1 đến Bài 15 của bạn.</p>
           </div>
           <div class="image-rail" aria-label="Ảnh từ bài học">
             <img src="assets/numbers.jpg" alt="Ảnh số đếm từ slide" />
@@ -63,6 +112,36 @@
         </div>
 
         <div class="lesson-grid" id="lessonCards"></div>
+
+        <section class="character-writing-showcase" id="writingShowcase" aria-labelledby="writingShowcaseTitle">
+          <div class="writing-diagram-card" aria-label="Sơ đồ thứ tự hai nét của chữ 十">
+            <svg viewBox="0 0 220 220" role="img" aria-labelledby="shiDiagramTitle shiDiagramDesc">
+              <title id="shiDiagramTitle">Sơ đồ viết chữ 十</title>
+              <desc id="shiDiagramDesc">Viết nét ngang trước, sau đó viết nét sổ thẳng.</desc>
+              <rect x="10" y="10" width="200" height="200" rx="18" class="writing-paper"></rect>
+              <path d="M110 14V206M14 110H206M32 32L188 188M188 32L32 188" class="writing-grid-line"></path>
+              <path d="M48 101 C82 98, 137 97, 173 100" class="han-stroke stroke-one"></path>
+              <path d="M111 48 C109 91, 111 142, 109 176" class="han-stroke stroke-two"></path>
+              <g class="stroke-label label-one"><circle cx="43" cy="88" r="13"></circle><text x="43" y="93">1</text></g>
+              <g class="stroke-label label-two"><circle cx="126" cy="45" r="13"></circle><text x="126" y="50">2</text></g>
+            </svg>
+          </div>
+          <div class="writing-showcase-copy">
+            <p class="eyebrow">Minh họa cách viết · 书写顺序</p>
+            <h2 id="writingShowcaseTitle"><span lang="zh-CN">十</span><small>shí · mười</small></h2>
+            <p class="band-copy">Chữ có hai nét, rất phù hợp để ghi nhớ quy tắc <strong>ngang trước – sổ sau</strong>.</p>
+            <div class="stroke-step-grid">
+              <article><span>01</span><strong>一 · héng</strong><p>Kéo nét ngang từ trái sang phải.</p></article>
+              <article><span>02</span><strong>丨 · shù</strong><p>Kéo nét sổ từ trên xuống dưới.</p></article>
+            </div>
+            <div class="writing-equation" aria-label="Một cộng nét sổ tạo thành chữ mười">
+              <span>一</span><b>+</b><span>丨</span><b>→</b><strong>十</strong>
+            </div>
+            <button class="secondary-button writing-speak-button" type="button" data-showcase-speak="十">
+              <i data-lucide="volume-2"></i><span>Nghe “shí”</span>
+            </button>
+          </div>
+        </section>
 
         <section class="tool-panel">
           <div class="section-head">
@@ -384,12 +463,51 @@
           <div class="custom-list" id="customList"></div>
         </section>
       </section>
+
+      <section id="dictionary" class="view dictionary-view" aria-labelledby="dictionaryTitle">
+        <div id="dictionaryWorkspace"></div>
+      </section>
     </main>
+    </div>
+
+    <div class="language-app" id="koreanApp" data-language="ko" hidden></div>
+
+    <div class="language-app" id="englishApp" data-language="en" hidden>
+      <header class="app-header course-header">
+        <div class="brand">
+          <span class="course-logo english-logo" aria-hidden="true">EN</span>
+          <div>
+            <h1>Sổ học tiếng Anh</h1>
+            <p>Không gian dành cho các bài học tiếng Anh</p>
+          </div>
+        </div>
+        <button class="language-switch" type="button" data-switch-language>
+          <i data-lucide="languages"></i><span>Đổi ngôn ngữ</span>
+        </button>
+      </header>
+      <main class="app-shell empty-course-shell">
+        <section class="empty-course-card">
+          <span class="empty-course-mark" aria-hidden="true">A</span>
+          <p class="eyebrow">Tiếng Anh</p>
+          <h2>Sẵn sàng cho tài liệu đầu tiên</h2>
+          <p>Phần chọn ngôn ngữ đã hoạt động. Khi bạn cung cấp bài học tiếng Anh, nội dung sẽ được thêm vào khu vực này.</p>
+          <button class="primary-button" type="button" data-switch-language>
+            <i data-lucide="arrow-left"></i><span>Chọn ngôn ngữ khác</span>
+          </button>
+        </section>
+      </main>
+    </div>
 
     <script src="data/lessons.js?v=lesson-15"></script>
     <script src="data/vocabulary.js?v=lesson-15"></script>
     <script src="data/transcripts.js?v=lesson-15"></script>
+    <script src="data/korean.js?v=multilingual-2"></script>
+    <script src="data/ielts.js?v=multilingual-2"></script>
+    <script src="data/dictionary-sets.js?v=dictionary-1"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="app.js?v=lesson-15"></script>
+    <script src="app.js?v=lesson-15-visual-2"></script>
+    <script src="dictionary-app.js?v=dictionary-1"></script>
+    <script src="ielts-app.js?v=multilingual-3"></script>
+    <script src="language-app.js?v=multilingual-2"></script>
   </body>
 </html>

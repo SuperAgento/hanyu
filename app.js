@@ -36,6 +36,57 @@ const lessonNameMap = {
   "Bài 15": "你们公司有多少职员",
 };
 
+const lessonMetaMap = {
+  "Bài 1": { hanzi: "你好", pinyin: "nǐ hǎo", meaning: "Xin chào" },
+  "Bài 2": { hanzi: "汉语不太难", pinyin: "Hànyǔ bú tài nán", meaning: "Tiếng Hán không khó lắm" },
+  "Bài 3": { hanzi: "明天见", pinyin: "Míngtiān jiàn", meaning: "Ngày mai gặp" },
+  "Bài 4": { hanzi: "你去哪儿", pinyin: "Nǐ qù nǎr", meaning: "Bạn đi đâu?" },
+  "Bài 5": { hanzi: "这是王老师", pinyin: "Zhè shì Wáng lǎoshī", meaning: "Đây là thầy giáo Vương" },
+  "Bài 6": { hanzi: "我学习汉语", pinyin: "Wǒ xuéxí Hànyǔ", meaning: "Tôi học tiếng Hán" },
+  "Bài 7": { hanzi: "你吃什么", pinyin: "Nǐ chī shénme", meaning: "Bạn ăn gì?" },
+  "Bài 8": { hanzi: "苹果一斤多少钱", pinyin: "Píngguǒ yì jīn duōshao qián", meaning: "Táo một cân bao nhiêu tiền?" },
+  "Bài 9": { hanzi: "我要换钱", pinyin: "Wǒ yào huàn qián", meaning: "Tôi muốn đổi tiền" },
+  "Bài 10": { hanzi: "他住哪儿", pinyin: "Tā zhù nǎr", meaning: "Anh ấy sống ở đâu?" },
+  "Bài 11": { hanzi: "我们都是留学生", pinyin: "Wǒmen dōu shì liúxuéshēng", meaning: "Chúng tôi đều là lưu học sinh" },
+  "Bài 12": { hanzi: "你在哪儿学习", pinyin: "Nǐ zài nǎr xuéxí", meaning: "Bạn học ở đâu?" },
+  "Bài 13": { hanzi: "这是不是中药", pinyin: "Zhè shì bu shì zhōngyào", meaning: "Đây có phải thuốc Đông y không?" },
+  "Bài 14": { hanzi: "你的车是新的还是旧的", pinyin: "Nǐ de chē shì xīn de háishi jiù de", meaning: "Xe của bạn mới hay cũ?" },
+  "Bài 15": { hanzi: "你们公司有多少职员", pinyin: "Nǐmen gōngsī yǒu duōshao zhíyuán", meaning: "Công ty của các bạn có bao nhiêu nhân viên?" },
+};
+
+const characterDiagramMap = {
+  "你": { parts: ["亻", "尔"], guide: "Trái trước · phải sau" },
+  "好": { parts: ["女", "子"], guide: "Trái trước · phải sau" },
+  "汉": { parts: ["氵", "又"], guide: "Bộ thủ trước · phần còn lại sau" },
+  "语": { parts: ["讠", "吾"], guide: "Trái trước · phải sau" },
+  "明": { parts: ["日", "月"], guide: "Trái trước · phải sau" },
+  "问": { parts: ["门", "口"], guide: "Ngoài trước · trong sau" },
+  "国": { parts: ["囗", "玉"], guide: "Ngoài trước · trong sau · đóng khung cuối" },
+  "们": { parts: ["亻", "门"], guide: "Trái trước · phải sau" },
+  "他": { parts: ["亻", "也"], guide: "Trái trước · phải sau" },
+  "她": { parts: ["女", "也"], guide: "Trái trước · phải sau" },
+  "妈": { parts: ["女", "马"], guide: "Trái trước · phải sau" },
+  "忙": { parts: ["忄", "亡"], guide: "Trái trước · phải sau" },
+  "难": { parts: ["又", "隹"], guide: "Trái trước · phải sau" },
+  "请": { parts: ["讠", "青"], guide: "Trái trước · phải sau" },
+  "说": { parts: ["讠", "兑"], guide: "Trái trước · phải sau" },
+  "听": { parts: ["口", "斤"], guide: "Trái trước · phải sau" },
+  "休": { parts: ["亻", "木"], guide: "Trái trước · phải sau" },
+  "白": { parts: ["丿", "日"], guide: "Trên trước · dưới sau" },
+  "十": { parts: ["一", "丨"], guide: "Ngang trước · sổ sau" },
+  "大": { parts: ["一", "丿", "㇏"], guide: "Ngang trước · phẩy trước mác sau" },
+  "口": { parts: ["丨", "𠃍", "一"], guide: "Vào trước · đóng khung sau" },
+};
+
+const slideKindMeta = {
+  writing: { label: "Cách viết", icon: "pen-tool" },
+  sound: { label: "Ngữ âm", icon: "audio-lines" },
+  vocabulary: { label: "Từ vựng", icon: "languages" },
+  example: { label: "Ví dụ", icon: "message-circle-more" },
+  practice: { label: "Luyện tập", icon: "list-checks" },
+  concept: { label: "Kiến thức", icon: "book-open-text" },
+};
+
 const audioLessons = [
   { id: "audio-01", number: 1, title: "Bài 1", theme: "你好 · Xin chào", src: "audio/lesson-01.mp3", lesson: "Bài 1" },
   { id: "audio-02", number: 2, title: "Bài 2", theme: "汉语不太难 · Tiếng Hán không khó lắm", src: "audio/lesson-02.mp3", lesson: "Bài 2" },
@@ -348,20 +399,134 @@ function updateStats() {
   $("#statSaved").textContent = rememberedWords;
 }
 
+function getLessonMeta(title) {
+  return lessonMetaMap[title] || {
+    hanzi: lessonNameMap[title] || title,
+    pinyin: "",
+    meaning: lessonNameMap[title] || title,
+  };
+}
+
+function getSlideKind(slide, vocabularyItem) {
+  const content = normalize(slide.lines.join(" "));
+  if (/net chu|quy tac viet|viet chu|bo thu|cau tao chu/.test(content)) return "writing";
+  if (/phien am|thanh mau|van mau|thanh dieu|ghep van|ngu am/.test(content)) return "sound";
+  if (/bai tap|luyen tap|on tap|practice/.test(content)) return "practice";
+  if (/vi du|bai khoa|hoi thoai|mau cau/.test(content)) return "example";
+  if (vocabularyItem) return "vocabulary";
+  return "concept";
+}
+
+function findSlideVocabulary(slide) {
+  const sourceLines = slide.lines.map((line) => line.trim());
+  const lessonItems = allVocab().filter((item) => item.lesson === slide.lessonTitle && item.hanzi);
+  const exact = lessonItems.find((item) => sourceLines.some((line) => line === item.hanzi));
+  if (exact) return exact;
+  const joined = sourceLines.join(" ");
+  return lessonItems
+    .filter((item) => joined.includes(item.hanzi))
+    .sort((a, b) => b.hanzi.length - a.hanzi.length)[0] || null;
+}
+
+function extractFeaturedHanzi(lines) {
+  const direct = lines
+    .map((line) => line.trim())
+    .find((line) => /^[\u3400-\u9fff\s，。！？、：；（）《》]{1,18}$/.test(line) && /[\u3400-\u9fff]/.test(line));
+  if (direct) return direct.replace(/[^\u3400-\u9fff]/g, "").slice(0, 10);
+  const matches = lines.flatMap((line) => line.match(/[\u3400-\u9fff]{1,10}/g) || []);
+  return matches.find((item) => item.length <= 6) || "";
+}
+
+function renderCharacterComposition(hanzi) {
+  const diagram = characterDiagramMap[hanzi];
+  const characters = Array.from(hanzi);
+  const parts = diagram?.parts || (characters.length > 1 && characters.length <= 4 ? characters : []);
+  if (!parts.length) return "";
+  return `
+    <div class="character-composition" aria-label="Sơ đồ cấu tạo chữ ${escapeHtml(hanzi)}">
+      <div class="composition-parts">
+        ${parts.map((part, index) => `${index ? '<span class="composition-sign">+</span>' : ""}<span class="component-glyph">${escapeHtml(part)}</span>`).join("")}
+        <span class="composition-sign result">→</span>
+        <strong>${escapeHtml(hanzi)}</strong>
+      </div>
+      <small>${escapeHtml(diagram?.guide || "Ghép các chữ theo thứ tự từ trái sang phải")}</small>
+    </div>
+  `;
+}
+
+function slideBodyLines(slide, vocabularyItem) {
+  if (!vocabularyItem) return slide.lines.filter((line) => line.trim());
+  const hiddenValues = new Set([
+    vocabularyItem.hanzi,
+    vocabularyItem.pinyin,
+    vocabularyItem.hanViet,
+    vocabularyItem.meaning,
+  ].filter(Boolean).map((value) => normalize(value)));
+  return slide.lines.filter((line) => {
+    const trimmed = line.trim();
+    if (!trimmed || /^\d+$/.test(trimmed)) return false;
+    return !hiddenValues.has(normalize(trimmed));
+  });
+}
+
+function renderSlideIllustration(slide, vocabularyItem, kind) {
+  const featuredHanzi = vocabularyItem?.hanzi || extractFeaturedHanzi(slide.lines);
+  const meta = slideKindMeta[kind];
+  if (!featuredHanzi) {
+    return `
+      <aside class="slide-concept-illustration ${escapeHtml(kind)}">
+        <span class="concept-icon"><i data-lucide="${escapeHtml(meta.icon)}"></i></span>
+        <strong>${escapeHtml(meta.label)}</strong>
+        <small>Sơ đồ hóa nội dung chính</small>
+      </aside>
+    `;
+  }
+  return `
+    <aside class="slide-character-illustration">
+      <button class="character-grid-button" type="button" data-slide-speak="${escapeHtml(featuredHanzi)}" title="Nghe phát âm ${escapeHtml(featuredHanzi)}">
+        <span class="character-grid-lines" aria-hidden="true"></span>
+        <strong>${escapeHtml(featuredHanzi)}</strong>
+        <i data-lucide="volume-2"></i>
+      </button>
+      <div class="slide-character-meta">
+        <b>${escapeHtml(vocabularyItem?.pinyin || meta.label)}</b>
+        <span>${escapeHtml(vocabularyItem?.meaning || "Nhìn chữ để ghi nhớ hình dáng")}</span>
+      </div>
+      ${renderCharacterComposition(featuredHanzi)}
+    </aside>
+  `;
+}
+
+function renderSlideLine(line, index) {
+  const trimmed = line.trim();
+  const isChinese = /[\u3400-\u9fff]/.test(trimmed);
+  const isHeading = trimmed.length <= 70 && (trimmed === trimmed.toUpperCase() || /^(phần|mục|chú ý|ví dụ|ngữ pháp|bài khóa)/i.test(trimmed));
+  const className = ["slide-line-card", isChinese ? "has-chinese" : "", isHeading ? "is-heading" : ""].filter(Boolean).join(" ");
+  return `<div class="${className}"><span>${index + 1}</span><p>${escapeHtml(trimmed)}</p></div>`;
+}
+
 function renderLessonCards() {
   $("#lessonCards").innerHTML = lessons.map((lesson) => {
     const topics = topicMap[lesson.title] || [];
     const textSlides = lesson.slides.filter((slide) => slide.lines.length).length;
+    const meta = getLessonMeta(lesson.title);
     return `
-      <article class="lesson-card">
-        <div>
+      <article class="lesson-card enriched-lesson-card">
+        <div class="lesson-card-topline">
           <p class="eyebrow">${escapeHtml(lesson.title)}</p>
-          <h3>${escapeHtml(lessonNameMap[lesson.title] || lesson.slides[0]?.lines[0] || lesson.title)}</h3>
-          <p>${lesson.slideCount} slide · ${textSlides} slide có chữ</p>
+          <span>${textSlides}/${lesson.slideCount} slide có chữ</span>
+        </div>
+        <div class="lesson-title-stack">
+          <h3 lang="zh-CN">${escapeHtml(meta.hanzi)}</h3>
+          <p class="lesson-pinyin">${escapeHtml(meta.pinyin)}</p>
+          <strong class="lesson-meaning">${escapeHtml(meta.meaning)}</strong>
         </div>
         <div class="lesson-topics">
           ${topics.map((topic) => `<span class="pill">${escapeHtml(topic)}</span>`).join("")}
         </div>
+        <button class="lesson-review-button" type="button" data-review-lesson="${escapeHtml(lesson.title)}">
+          <span>Xem nội dung slide</span><i data-lucide="arrow-right"></i>
+        </button>
       </article>
     `;
   }).join("");
@@ -380,15 +545,51 @@ function renderSlides() {
     });
 
   const list = slides.slice(0, 160);
-  $("#slideList").innerHTML = list.length ? list.map((slide) => `
-    <article class="slide-item">
-      <h3>${escapeHtml(slide.lessonTitle)} · Slide ${slide.index}</h3>
-      <div class="slide-lines">
-        ${slide.lines.slice(0, 9).map((line) => `<span>${escapeHtml(line)}</span>`).join("")}
-        ${slide.lines.length > 9 ? `<span>+${slide.lines.length - 9} dòng nữa</span>` : ""}
-      </div>
-    </article>
-  `).join("") : `<div class="empty-state">Không có slide phù hợp.</div>`;
+  $("#slideList").innerHTML = list.length ? list.map((slide) => {
+    const vocabularyItem = findSlideVocabulary(slide);
+    const kind = getSlideKind(slide, vocabularyItem);
+    const kindMeta = slideKindMeta[kind];
+    const lessonMeta = getLessonMeta(slide.lessonTitle);
+    const bodyLines = slideBodyLines(slide, vocabularyItem);
+    const visibleLines = bodyLines.slice(0, 6);
+    const extraLines = bodyLines.slice(6, 12);
+    const slideTitle = vocabularyItem
+      ? `${vocabularyItem.hanzi} · ${vocabularyItem.pinyin} · ${vocabularyItem.meaning}`
+      : (visibleLines[0] || `${kindMeta.label} · Slide ${slide.index}`);
+    const contentLines = vocabularyItem ? visibleLines : visibleLines.slice(1);
+    return `
+      <article class="slide-item rich-slide-item slide-kind-${escapeHtml(kind)}">
+        <header class="slide-card-head">
+          <div>
+            <span class="slide-number">Slide ${slide.index}</span>
+            <span class="slide-kind"><i data-lucide="${escapeHtml(kindMeta.icon)}"></i>${escapeHtml(kindMeta.label)}</span>
+          </div>
+          <div class="slide-lesson-signature">
+            <strong>${escapeHtml(slide.lessonTitle)} · ${escapeHtml(lessonMeta.hanzi)}</strong>
+            <span>${escapeHtml(lessonMeta.pinyin)} · ${escapeHtml(lessonMeta.meaning)}</span>
+          </div>
+        </header>
+        <div class="slide-rich-body">
+          ${renderSlideIllustration(slide, vocabularyItem, kind)}
+          <div class="slide-content-panel">
+            <p class="eyebrow">Nội dung trọng tâm</p>
+            <h3>${escapeHtml(slideTitle)}</h3>
+            ${vocabularyItem?.hanViet ? `<p class="han-viet-label">Âm Hán Việt: <strong>${escapeHtml(vocabularyItem.hanViet)}</strong></p>` : ""}
+            <div class="slide-lines-rich">
+              ${contentLines.length ? contentLines.map(renderSlideLine).join("") : `<div class="slide-line-card is-heading"><span>✓</span><p>${escapeHtml(vocabularyItem?.note || "Quan sát phần minh họa để ghi nhớ.")}</p></div>`}
+            </div>
+            ${extraLines.length ? `
+              <details class="slide-more-lines">
+                <summary>Xem thêm ${extraLines.length} ý</summary>
+                <div>${extraLines.map((line, index) => renderSlideLine(line, contentLines.length + index)).join("")}</div>
+              </details>
+            ` : ""}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("") : `<div class="empty-state">Không có slide phù hợp.</div>`;
+  refreshIcons();
 }
 
 function filteredVocab() {
@@ -859,6 +1060,22 @@ function bindEvents() {
 
   $("#slideLessonFilter").addEventListener("change", renderSlides);
   $("#slideSearch").addEventListener("input", renderSlides);
+  $("#lessonCards").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-review-lesson]");
+    if (!button) return;
+    $("#slideLessonFilter").value = button.dataset.reviewLesson;
+    $("#slideSearch").value = "";
+    renderSlides();
+    $("#slideList").closest(".tool-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  $("#slideList").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-slide-speak]");
+    if (button) speak(button.dataset.slideSpeak);
+  });
+  $("#writingShowcase").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-showcase-speak]");
+    if (button) speak(button.dataset.showcaseSpeak);
+  });
   $("#vocabLessonFilter").addEventListener("change", renderVocab);
   $("#statusFilter").addEventListener("change", renderVocab);
   $("#vocabSearch").addEventListener("input", renderVocab);
